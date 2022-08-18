@@ -18,6 +18,10 @@ class User extends Authenticatable
     use Notifiable;
     use TwoFactorAuthenticatable;
 
+    public function roleIs()
+    {
+        return $this->role_id;
+    }
     /**
      * The attributes that are mass assignable.
      *

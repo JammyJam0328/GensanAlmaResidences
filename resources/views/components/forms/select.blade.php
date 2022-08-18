@@ -5,8 +5,8 @@
     'required' => false,
 ])
 @php
-$error_less_class = 'block w-full py-[10px] pl-[10px] pr-7 border border-gray-300 text-gray-900 placeholder-gray-300 focus:outline-none focus:ring-offset-2 focus:ring-2 focus:ring-primary-700 duration-100 ease-in-out focus:border-gray-300 sm:text-sm rounded-lg';
-$error_class = 'block w-full py-[10px] pl-[10px] pr-7 border border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-offset-2 focus:ring-2 focus:ring-red-200 duration-100 ease-in-out focus:border-red-300 sm:text-sm rounded-lg';
+$error_less_class = 'text-gray-900 block w-full transition duration-75 rounded-lg shadow-sm focus:border-primary-600 focus:ring-1 focus:ring-inset focus:ring-primary-600 disabled:opacity-70 border-gray-300';
+$error_class = 'text-gray-900 block w-full transition duration-75 rounded-lg shadow-sm focus:border-primary-600 focus:ring-1 focus:ring-inset focus:ring-primary-600 disabled:opacity-70 border-danger-600 ring-danger-600';
 $model_name = $attributes->whereStartsWith('wire:model')->first();
 $has_error = $errors->has($model_name);
 $has_model = $model_name !== null;

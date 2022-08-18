@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Process;
 
-use App\Models\{Floor, Room, RoomStatus};
+use App\Models\{Room};
 use Livewire\Component;
 use Filament\Forms;
 use Filament\Forms\Components\{CheckboxList, TextInput, Grid, Select, Textarea};

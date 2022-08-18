@@ -24,8 +24,18 @@
  @endphp
 
  <x-admin-layout>
+     <template x-teleport="#backButtonContainer">
+         <div class="flex items-center space-x-2">
+             <h1 class="text-2xl">
+                 ALMA RESIDENCES
+             </h1>
+         </div>
+     </template>
      <x-slot:header>
-         <x-app.page-title text="Manage Rooms" />
+         <div class="flex items-center space-x-3">
+             <x-icons.manage-rooms class="w-7 h-7" />
+             <x-app.page-title text="Manage Rooms" />
+         </div>
      </x-slot:header>
      <div>
          <livewire:tables.rooms :floors="$floors"

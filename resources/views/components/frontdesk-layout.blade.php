@@ -1,9 +1,8 @@
 @props(['header' => ''])
-<x-app htmlClass="h-full bg-gray-100"
     bodyClass="h-full">
     <div>
         <x-admin.mobile-sidebar />
-        <x-admin.static-sidebar />
+        <x-frontdesk.static-sidebar />
         <div class="flex flex-col flex-1 md:pl-64">
             <div class="sticky top-0 z-10 pt-1 pl-1 bg-gray-100 md:hidden sm:pl-3 sm:pt-3">
                 <button type="button"
@@ -24,14 +23,14 @@
                 </button>
             </div>
             <main class="flex-1">
-                <x-admin.sticky-top>
+                <x-frontdesk.sticky-top>
                     <div class="flex items-center justify-between w-full px-6 py-3 ">
                         <div id="backButtonContainer">
 
                         </div>
                         <x-admin.quick-menus />
                     </div>
-                </x-admin.sticky-top>
+                </x-frontdesk.sticky-top>
                 <div class="py-6">
                     <div class="px-4 mx-auto max-w-7xl sm:px-6 md:px-8">
                         {{ $header ?? '' }}

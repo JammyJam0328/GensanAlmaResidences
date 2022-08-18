@@ -1,4 +1,4 @@
-<x-admin-layout>
+<x-frontdesk-layout>
     <template x-teleport="#backButtonContainer">
         <div class="flex items-center space-x-2">
             <h1 class="text-2xl">
@@ -12,7 +12,7 @@
             <x-app.page-title text="Guests" />
         </div>
     </x-slot:header>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum eaque architecto beatae, adipisci optio quisquam
-    omnis voluptatem incidunt quam ipsa expedita quis reiciendis consequatur sed tempora deleniti. Magnam, itaque
-    nostrum!
-</x-admin-layout>
+    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestiae optio maiores facilis nesciunt eius quos,
+    doloribus ad aspernatur debitis distinctio quo ratione iure delectus quam recusandae adipisci dignissimos aperiam.
+    Repudiandae.
+</x-frontdesk-layout>

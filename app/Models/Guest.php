@@ -9,4 +9,8 @@ class Guest extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class);
+    }
 }

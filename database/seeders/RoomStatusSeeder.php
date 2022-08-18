@@ -16,25 +16,25 @@ class RoomStatusSeeder extends Seeder
     public function run()
     {
         RoomStatus::create([
-            'name' => 'Available',
+            'name' => 'Available', //1
         ]);
         RoomStatus::create([
-            'name' => 'Occupied',
+            'name' => 'Occupied',   //2
         ]);
         RoomStatus::create([
-            'name' => 'Reserved',
+            'name' => 'Reserved',  //3
         ]);
         RoomStatus::create([
-            'name' => 'Maintenance',
+            'name' => 'Maintenance',    //4
         ]);
         RoomStatus::create([
-            'name' => 'Unavailable',
+            'name' => 'Unavailable',    //5
         ]);
         RoomStatus::create([
-            'name' => 'Selected In Kiosk',
+            'name' => 'Selected In Kiosk',  //6
         ]);
         RoomStatus::create([
-            'name' => 'Uncleaned',
+            'name' => 'Uncleaned',  //7
         ]);
     }
 }

@@ -20,6 +20,9 @@ return new class extends Migration
             $table->unsignedBigInteger('rate_id');
             $table->string('static_amount');
             $table->string('static_hours_stayed');
+            $table->dateTime('check_in_at')->nullable();
+            $table->dateTime('expected_check_out_at')->nullable();
+            $table->dateTime('check_out_at')->nullable();
             $table->timestamps();
         });
     }

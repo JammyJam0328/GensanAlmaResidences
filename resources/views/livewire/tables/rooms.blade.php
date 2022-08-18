@@ -41,11 +41,11 @@
                 </x-app.table-data>
                 <x-app.table-data>
                     <div>
-                        @forelse ($room->types as $room_type)
-                            {{ $room_type->name }}/
-                        @empty
+                        @if (count($room->types))
+                            {{ implode('/', $room->types->pluck('name')->toArray()) }}
+                        @else
                             No Types
-                        @endforelse
+                        @endif
                     </div>
                 </x-app.table-data>
                 <x-app.table-data>

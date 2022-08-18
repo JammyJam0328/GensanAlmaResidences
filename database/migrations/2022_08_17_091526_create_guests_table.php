@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('contact_number');
             $table->boolean('is_out_of_the_building')->default(false);
+            $table->boolean('is_checked_in')->default(false);
             $table->timestamps();
         });
     }

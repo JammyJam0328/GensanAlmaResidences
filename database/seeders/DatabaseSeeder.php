@@ -17,7 +17,10 @@ class DatabaseSeeder extends Seeder
         $this->call(RoleSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(RoomTypeSeeder::class);
-        $this->call(FloorSeeder::class);
         $this->call(RoomStatusSeeder::class);
+        $this->call(GensanAlmaResidencesRates::class);
+        $this->call(DummyRoomSeeder::class);
+        $this->call(TransactionTypesSeeder::class);
+        $this->call(DummyCheckIn::class);
     }
 }

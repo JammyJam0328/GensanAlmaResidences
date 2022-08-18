@@ -7,14 +7,14 @@
          })
          ->toArray();
      $roomStatuses = \App\Models\RoomStatus::get()
-         ->where('id', '!=', '6')
          ->mapWithKeys(function ($status) {
              return [
                  $status->id => $status->name,
              ];
          })
          ->toArray();
-     $types = \App\Models\Type::get()
+     $types = \App\Models\Type::whereHas('rates')
+         ->get()
          ->mapWithKeys(function ($type) {
              return [
                  $type->id => $type->name,

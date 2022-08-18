@@ -17,24 +17,28 @@ class RoomTypeSeeder extends Seeder
     public function run()
     {
         Type::create([
-            'name' => 'Single',
+            'name' => 'Single Size Bed',
         ]);
         Type::create([
-            'name' => 'Double',
+            'name' => 'Double Size Bed',
         ]);
         Type::create([
-            'name' => 'Triple',
+            'name' => 'Queen Size Bed',
         ]);
         Type::create([
-            'name' => 'Queen',
+            'name' => 'Twin Single Size Bed',
         ]);
-        Type::create([
-            'name' => 'King',
+        StayingHour::create([
+            'number' => "6",
         ]);
-        for ($i=1; $i <=24 ; $i++) { 
-            StayingHour::create([
-                'number' => $i,
-            ]);
-        }
+        StayingHour::create([
+            'number' => "12",
+        ]);
+        StayingHour::create([
+            'number' => "18",
+        ]);
+        StayingHour::create([
+            'number' => "24",
+        ]);
     }
 }

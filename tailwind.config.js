@@ -16,6 +16,7 @@ module.exports = {
             },
             fontFamily: {
                 inter: ['Inter', defaultTheme.fontFamily.sans],
+                rubik: ['Rubik', ...defaultTheme.fontFamily.sans],
             }
         },
     },

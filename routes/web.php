@@ -13,6 +13,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::prefix('/kiosk')->middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('/',function(){
+        return view('kiosk.transaction');
+    })->name('kiosk.transaction');
+
+    Route::get('/reports',function(){
+        return view('kiosk.reports');
+    })->name('kiosk.reports');
+});
+
+
 Route::get('/', function () {
     return view('welcome');
 });

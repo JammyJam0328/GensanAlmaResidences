@@ -1,4 +1,5 @@
 @props(['header' => ''])
+<x-app htmlClass="h-full bg-gray-100"
     bodyClass="h-full">
     <div>
         <x-admin.mobile-sidebar />

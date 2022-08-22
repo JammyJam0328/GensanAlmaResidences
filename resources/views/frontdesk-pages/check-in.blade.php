@@ -12,12 +12,15 @@
             <x-app.page-title text="Check In" />
         </div>
     </x-slot:header>
-    <div class="sm:grid sm:grid-cols-12">
+    <div class="gap-4 sm:grid sm:grid-cols-12">
         <div class="sm:col-span-8">
-            <livewire:process.scan-qr-check-in />
+            <livewire:tables.check-in />
         </div>
         <div class=" sm:col-span-4">
-
+            <livewire:tables.recent-check-in-list />
         </div>
+    </div>
+    <div>
+        <livewire:process.view-and-check-in />
     </div>
 </x-frontdesk-layout>

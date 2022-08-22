@@ -17,4 +17,8 @@ class Rate extends Model
     {
         return $this->belongsTo(Type::class);
     }
+    public function check_in_details()
+    {
+        return $this->hasMany(CheckInDetail::class);
+    }
 }

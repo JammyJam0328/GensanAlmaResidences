@@ -6,7 +6,7 @@
     'thead' => '',
     'pagination' => '',
 ])
-<div class="p-5 bg-white border rounded-lg">
+<div class="p-5 bg-white rounded-lg shadow">
     <div class="space-y-5">
         @if ($noHeader == false)
             <div class="sm:flex sm:items-center">

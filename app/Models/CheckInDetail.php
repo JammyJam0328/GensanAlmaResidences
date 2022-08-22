@@ -13,4 +13,12 @@ class CheckInDetail extends Model
     {
         return $this->belongsTo(Transaction::class);
     }
+    public function room()
+    {
+        return $this->belongsTo(Room::class);
+    }
+    public function rate()
+    {
+        return $this->belongsTo(Rate::class);
+    }
 }

@@ -12,7 +12,6 @@
             <x-app.page-title text="Guests" />
         </div>
     </x-slot:header>
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestiae optio maiores facilis nesciunt eius quos,
-    doloribus ad aspernatur debitis distinctio quo ratione iure delectus quam recusandae adipisci dignissimos aperiam.
-    Repudiandae.
+    <livewire:tables.guests />
+    <livewire:process.view-guest-info />
 </x-frontdesk-layout>

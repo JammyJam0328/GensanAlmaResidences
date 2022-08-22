@@ -21,7 +21,7 @@ Route::middleware([
             dd('bellboy');
             break;
           case Role::housekeeping():
-            dd('housekeeping');
+            return redirect()->route('house-keeping.dashboard');
             break;
           case Role::kiosk():
             dd('kiosk');

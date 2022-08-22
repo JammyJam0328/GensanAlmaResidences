@@ -48,6 +48,13 @@
                         <x-icons.transactions class="h-6" />
                     </x-slot:icon>
                 </x-frontdesk.nav-link>
+                <x-frontdesk.nav-link route="{{ route('frontdesk.rooms') }}"
+                    isActive="{{ request()->is('frontdesk/rooms*') }}"
+                    label="Rooms">
+                    <x-slot:icon>
+                        <x-icons.manage-rooms class="h-6" />
+                    </x-slot:icon>
+                </x-frontdesk.nav-link>
             </nav>
         </div>
     </div>

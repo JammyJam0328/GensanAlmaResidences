@@ -21,4 +21,7 @@ Route::prefix('frontdesk')->middleware([
     Route::get('/transactions', function () {
         return view('frontdesk-pages.transactions');
     })->name('frontdesk.transactions');
+    Route::get('/rooms', function () {
+        return view('frontdesk-pages.rooms');
+    })->name('frontdesk.rooms');
 });

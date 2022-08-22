@@ -12,7 +12,5 @@
             <x-app.page-title text="Check Out" />
         </div>
     </x-slot:header>
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestiae optio maiores facilis nesciunt eius quos,
-    doloribus ad aspernatur debitis distinctio quo ratione iure delectus quam recusandae adipisci dignissimos aperiam.
-    Repudiandae.
+    <livewire:process.check-out />
 </x-frontdesk-layout>

@@ -28,6 +28,8 @@ $element_id = $model_name ?? uniqid();
             {{ $attributes->whereStartsWith('wire:model') }}
             {{ $attributes->whereStartsWith('wire:ignore') }}
             {{ $attributes->whereStartsWith('placeholder') }}
+            {{ $attributes->whereStartsWith('x-ref') }}
+            {{ $attributes->whereStartsWith('x-model') }}
             @if ($has_model) class="{{ $has_error ? $error_class : $error_less_class }}"
             @else
                 class="{{ $error_less_class }}" @endif

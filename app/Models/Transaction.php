@@ -17,4 +17,8 @@ class Transaction extends Model
     {
         return $this->hasOne(CheckInDetail::class);
     }
+    public function transaction_type()
+    {
+        return $this->belongsTo(TransactionType::class);
+    }
 }

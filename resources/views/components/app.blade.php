@@ -33,6 +33,7 @@
     class="antialiased font-inter {{ $bodyClass }}">
     {{ $slot }}
     @livewire('notifications')
+    @livewire('app.confirm-dialog')
     @livewireScripts
 </body>
 

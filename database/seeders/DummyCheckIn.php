@@ -32,6 +32,10 @@ class DummyCheckIn extends Seeder
                 'transaction_type_id'=>1,
                 'payable_amount'=>'200',
             ]);
+            $deposite = $guest->transactions()->create([
+                'transaction_type_id'=>2,
+                'payable_amount'=>'200',
+            ]);
             $check_in_detail = $transaction->check_in_detail()->create([
                 'room_id'=>$i,
                 'rate_id'=>1,

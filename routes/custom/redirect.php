@@ -24,7 +24,7 @@ Route::middleware([
             return redirect()->route('house-keeping.dashboard');
             break;
           case Role::kiosk():
-            dd('kiosk');
+            return redirect()->route('kiosk.transaction');
             break;
           default:
             # code...

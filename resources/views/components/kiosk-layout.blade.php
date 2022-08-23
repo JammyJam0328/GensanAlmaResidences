@@ -13,7 +13,7 @@
     <!-- Fonts -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
-
+        <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;600;700&display=swap" rel="stylesheet">
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -28,7 +28,7 @@
 <div class="absolute text-gray-300 flex justify-end items-end pb-5 pr-5 text-sm font-rubik font-medium w-full h-full">POWERED BY: J7 I.T SOLUTION</div>
 <div class="relative">
     <div class="flex justify-between  p-4 px-10">
-        <x-svg.logo/>
+        <x-svg.logo class="h-16" />
          <form method="POST" action="{{ route('logout') }}" role="none">
             @csrf
             <a href="{{ route('logout') }}" onclick="event.preventDefault();

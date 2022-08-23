@@ -306,7 +306,7 @@
                         <div class="mt-8 sm:max-w-lg sm:mx-auto sm:text-center lg:text-left lg:mx-0">
                             <p class="text-base mb-2 font-medium font-rubik text-gray-700">Please sign in to get
                                 started.</p>
-                            <button onclick="document.location='login'" class="flex px-2 py-1 bg-gray-700 text-gray-300 fill-gray-300 hover:text-white hover:fill-white rounded shadow font-rubik items-center space-x-1">
+                            <button onclick="document.location='login'" class="flex px-2 py-2 bg-gray-700 text-gray-300 fill-gray-300 hover:text-white hover:fill-white rounded shadow font-rubik items-center space-x-1">
                                 <span class="font-semibold text-sm">Sign In</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 h-5"">
                                     <path fill="none" d="M0 0h24v24H0z" />

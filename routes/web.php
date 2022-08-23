@@ -31,6 +31,31 @@ Route::prefix('/kiosk')->middleware([
 });
 
 
+Route::prefix('/kitchen')->middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('/',function(){
+        return view('kitchen-pages.dashboard');
+    })->name('kitchen.dashboard');
+    Route::get('/orders',function(){
+        return view('kitchen-pages.order');
+    })->name('kitchen.order');
+   
+    Route::get('/menu',function(){
+        return view('kitchen-pages.menu');
+    })->name('kitchen.menu');
+    Route::get('/menu/{id}',function(){
+        return view('kitchen-pages.manage-menu');
+    })->name('kitchen.manage-menu');
+    Route::get('/settings',function(){
+        return view('kitchen-pages.settings');
+    })->name('kitchen.settings');
+   
+});
+
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -43,4 +68,8 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+});
+
+Route::fallback(function () {
+    return view('404');
 });

@@ -359,13 +359,12 @@
                         fill="#57b894" />
                 </svg>
             </div>
-            <h1 class="text-center font-bold text-3xl border-b-2 text-blue-900 font-rubik border-main mt-10">D'MORVIE SUITES</h1>
-            <h1 class="text-center font-semibold   text-gray-700 font-rubik border-main ">Your Cheaper and
-                Satisfying Stay in Town</h1>
+            <h1 class="text-center font-bold text-3xl border-b-2 text-blue-900 font-rubik border-main mt-10">ALMA RESIDENCES</h1>
+            <h1 class="text-center    text-gray-700 font-rubik border-main ">General Santos City</h1>
 
         </div>
         <div class="bg-white rounded-r-3xl h-4/5  w-2/6 p-16 pt-28">
-            <img src="{{asset('images/dmorvielogo.png')}}" class="h-10" alt="">
+            <x-svg.logo class="h-10" />
             <h1 class="font-bold text-2xl font-rubik text-gray-700">Get's Started.</h1>
         
            

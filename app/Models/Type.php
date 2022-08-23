@@ -17,4 +17,8 @@ class Type extends Model
     {
         return $this->belongsToMany(Room::class, 'room_types');
     }
+    public function roomtypes()
+    {
+        return $this->hasMany(RoomType::class);
+    }
 }

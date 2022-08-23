@@ -15,7 +15,7 @@ Route::middleware([
             return redirect()->route('frontdesk.dashboard');
             break;
           case Role::kitchen():
-            dd('kitchen');
+            return redirect()->route('kitchen.dashboard');
             break;
           case Role::bellboy():
             dd('bellboy');

@@ -14,6 +14,7 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
         <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;600;700&display=swap" rel="stylesheet">
+        <script src="https://unpkg.com/@lottiefiles/lottie-interactivity@latest/dist/lottie-interactivity.min.js"></script>
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -27,19 +28,19 @@
 </div>
 <div class="absolute text-gray-300 flex justify-end items-end pb-5 pr-5 text-sm font-rubik font-medium w-full h-full">POWERED BY: J7 I.T SOLUTION</div>
 <div class="relative">
-    <div class="flex justify-between  p-4 px-10">
+    <div class="flex justify-between items-center p-4 px-10">
         <x-svg.logo class="h-16" />
-         <form method="POST" action="{{ route('logout') }}" role="none">
+        <form method="POST" action="{{ route('logout') }}" role="none">
             @csrf
             <a href="{{ route('logout') }}" onclick="event.preventDefault();
-            this.closest('form').submit();" class="hover:fill-white fill-gray-300">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-8 w-8 ">
+            this.closest('form').submit();" class="grid place-content-center fill-gray-300 hover:fill-white">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-7 rotate-90 w-7">
                     <path fill="none" d="M0 0h24v24H0z" />
                     <path
-                        d="M5 2h14a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1zm4 9V8l-5 4 5 4v-3h6v-2H9z" />
+                        d="M5 11h8v2H5v3l-5-4 5-4v3zm-1 7h2.708a8 8 0 1 0 0-12H4A9.985 9.985 0 0 1 12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10a9.985 9.985 0 0 1-8-4z" />
                 </svg>
             </a>
-         </form>
+           </form>
      </div>
     {{$slot}}
 </div>
@@ -66,6 +67,7 @@
     @stack('modals') --}}
     
     @livewireScripts
+    @stack('scripts')
 </body>
 
 </html>

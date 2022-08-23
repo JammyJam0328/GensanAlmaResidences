@@ -24,6 +24,9 @@ Route::prefix('/kiosk')->middleware([
     Route::get('/check-in',function(){
         return view('kiosk-pages.checkin');
     })->name('kiosk.checkin');
+    Route::get('/check-out',function(){
+        return view('kiosk-pages.checkout');
+    })->name('kiosk.checkout');
 
     Route::get('/reports',function(){
         return view('kiosk.reports');

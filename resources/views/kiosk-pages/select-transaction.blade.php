@@ -1,6 +1,6 @@
 <x-kiosk-layout>
    
-    <div class="mt-28 mx-10 font-rubik text-white">
+    <div class="mt-20 mx-10 font-rubik text-white">
         <h1 class="text-2xl ml-2 font-medium">Welcome to</h1>
         <h1 class="text-7xl uppercase font-black">ALMA RESIDENCES |</h1>
         <h1 class="text">General Santos City</h1>
@@ -20,7 +20,7 @@
             </div>
             <h1 class="font-black text-white font-rubik text-2xl">CHECK-IN</h1>
         </button>
-        <button 
+        <button onclick="document.location='{{route('kiosk.checkout')}}'"
             class="focus:ring-2 ring-white hover:bg-opacity-30 bg-white bg-opacity-10 grid place-content-center w-56 rounded-3xl h-56">
             <div class="text-center grid place-content-center fill-white mb-10">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-20 w-20">

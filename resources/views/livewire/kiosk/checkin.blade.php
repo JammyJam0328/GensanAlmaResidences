@@ -161,7 +161,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                @dump($transaction)
+                                {{-- @dump($transaction) --}}
                                 <div class="mt-10 w-full font-rubik">
                                     <h1 class="uppercase font-bold  text-xl text-gray-700">Select your room
                                         type</h1>

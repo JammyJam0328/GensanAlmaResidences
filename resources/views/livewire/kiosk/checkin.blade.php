@@ -1,11 +1,12 @@
 <div x-data="{ steps: @entangle('step') }" class="font-rubik">
     <div x-show="steps==1" x-cloak class="step">
-        <div class=" mt-5 mx-10">
+        <div class=" mt-5 mx-10 flex justify-between">
             <h1 class="font-black text-3xl font-rubik text-gray-300">PLEASE SELECT AVAILABLE ROOM: |</h1>
+            <x-cancel-transaction/>
         </div>
         <div class="mt-10 mx-10  flex justify-between space-x-10">
             <div class="flex-1">
-                <div class="grid grid-cols-5  gap-5 h-[35rem] overflow-y-auto rounded-3xl ">
+                <div class="grid xl:grid-cols-5 lg:grid-cols-4  gap-5 h-[33rem] overflow-y-auto rounded-3xl ">
 
                     @foreach ($rooms as $room)
                         <button wire:click="selectRoom({{ $room->id }})" class="relative">
@@ -29,7 +30,7 @@
 
                 </div>
             </div>
-            <div class=" w-96 relative font-rubik">
+            <div class=" xl:w-96 lg:w-72 relative font-rubik">
 
                 <h1 class="text-gray-300 italic text-sm font-rubik">Selected Room/s</h1>
                 <div class="flow-root mt-6">
@@ -49,8 +50,8 @@
                                         </svg>
                                     </div>
                                     <div class="flex-1 min-w-0 flex space-x-1 font-rubik">
-                                        <p class="text-lg font-bold text-white truncate">RM #{{ $room->number }} | </p>
-                                        <p class="text-lg font-bold text-green-300">{{ ordinal($room->floor->number) }}
+                                        <p class="text-lg font-bold text-white ">RM #{{ $room->number }} | </p>
+                                        <p class="text-lg font-bold  text-green-300">{{ ordinal($room->floor->number) }}
                                             FLOOR </p>
                                     </div>
                                     <div>
@@ -69,7 +70,7 @@
                         @endforelse
                     </ul>
                 </div>
-                <div class="absolute bottom-2 right-0">
+                <div class="absolute bottom-5 right-0">
                     @if (count($transaction) > 0)
                         <button wire:click="$set('step',2)"
                             class="flex bg-white py-3  font-semibold text-gray-600 hover:text-gray-700 hover:fill-gray-700 space-x-1 rounded-md px-3">
@@ -85,24 +86,27 @@
             </div>
         </div>
     </div>
-    <div x-show="steps==2" x-cloak class="step relative h-[40rem]">
-        <div class="mx-10 flex mt-2 font-rubik justify-end">
-            <button wire:click="$set('step', 1)"
-                class="bg-white rounded font-semibold py-2 text-gray-600 flex space-x-1 px-2">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-6 w-6 fill-gray-600">
-                    <path fill="none" d="M0 0h24v24H0z" />
-                    <path
-                        d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2zm0 9V8l-4 4 4 4v-3h4v-2h-4z" />
-                </svg>
-                <span>PREVIOUS</span>
-            </button>
-        </div>
-        <div class="mx-10 mt-10 font-rubik">
-            <div class=" ">
+    <div x-show="steps==2" x-cloak class="step relative h-[33rem]">
+        
+        <div class="mx-10 mt-5 font-rubik">
+            <div class="flex justify-between items-center ">
                 <h1 class="font-black text-3xl font-rubik text-gray-300">MANAGE YOUR SELECTED ROOM |</h1>
+               
+                <div class="font-rubik flex space-x-1 justify-between">
+                    <x-cancel-transaction/>
+                    <button wire:click="$set('step', 1)"
+                        class="bg-white rounded font-semibold py-2 text-gray-600 flex space-x-1 px-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-6 w-6 fill-gray-600">
+                            <path fill="none" d="M0 0h24v24H0z" />
+                            <path
+                                d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2zm0 9V8l-4 4 4 4v-3h4v-2h-4z" />
+                        </svg>
+                        <span>Previous</span>
+                    </button>
+                </div>
             </div>
 
-            <div class="grid mt-5 grid-cols-5 gap-2" x-data="{ manage: false }">
+            <div class="grid mt-5 xl:grid-cols-5 lg:grid-cols-4 xl:gap-2 lg:gap-5" x-data="{ manage: false }">
                 @foreach ($transaction as $key => $item)
                     @php
                         $room = \App\Models\Room::where('id', $item['room_id'])->first();
@@ -110,7 +114,7 @@
                     <button wire:key="{{ $key }}" wire:click="manageRoom({{ $key }})" class="relative"
                         x-on:click="manage = true">
                         <div class="absolute inset-0 bg-gray-400 opacity-80 rounded-r-3xl rounded-bl-3xl blur"></div>
-                        <div class="bg-white relative h-72 rounded-3xl ">
+                        <div class="bg-white relative xl:h-72 lg:h-60 rounded-3xl ">
                             <div
                                 class="absolute w-11 h-16 shadow-xl rounded-r-3xl grid place-content-center top-0 bg-green-500 left-0">
                                 <span class="font-bold text-md text-gray-700">{{ ordinal($room->floor->number) }}</span>
@@ -196,7 +200,7 @@
                                                     </button>
                                                 @endforeach
                                                 @else
-                                                <span class="text-sm italic bg-gray-500 px-2 rounded-full">Select Room Type first...</span>
+                                                <span class="text-sm italic bg-gray-500 text-white px-2 rounded-full">Select Room Type first...</span>
                                             @endif
                                             
                                         </div>
@@ -208,16 +212,7 @@
                                             class="bg-white hover:bg-gray-200 cursor-pointer py-2 px-3 rounded-md shadow">
                                             <span class=" font-semibold text-red-500 text-sm">CLOSE</span>
                                         </div>
-                                        <div type="submit"
-                                            class="bg-white hover:bg-gray-200 py-2 px-3 flex items-center rounded-md shadow">
-                                            <span class=" font-semibold text-gray-600 text-sm">SAVE</span>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                                class="h-5 w-6 fill-gray-600">
-                                                <path fill="none" d="M0 0h24v24H0z" />
-                                                <path
-                                                    d="M18 21v-8H6v8H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h13l4 4v13a1 1 0 0 1-1 1h-2zm-2 0H8v-6h8v6z" />
-                                            </svg>
-                                        </div>
+                                     
                                     </div>
                                 </div>
                             </div>
@@ -245,19 +240,22 @@
         </div>
     </div>
     <div x-show="steps==3" x-cloak class="relative mx-10">
-        <div class="flex mt-2 font-rubik justify-between">
-            <h1 class="font-black text-3xl font-rubik text-gray-300">PLEASE CONFIRM YOUR CHECK-IN INFORMATION |</h1>
+        <div class="flex mt-2 font-rubik items-center justify-between">
+            <h1 class="font-black xl:text-3xl lg:text-2xl font-rubik text-gray-300">PLEASE CONFIRM YOUR CHECK-IN INFORMATION |</h1>
+           <div class="flex justify-between space-x-1">
+            <x-cancel-transaction />
             <button wire:click="$set('step', 2)"
-                class="bg-white rounded font-semibold py-2 text-gray-600 flex space-x-1 px-2">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-6 w-6 fill-gray-600">
-                    <path fill="none" d="M0 0h24v24H0z" />
-                    <path
-                        d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2zm0 9V8l-4 4 4 4v-3h4v-2h-4z" />
-                </svg>
-                <span>PREVIOUS</span>
-            </button>
+            class="bg-white rounded font-semibold py-2 text-gray-600 flex space-x-1 px-2">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-6 w-6 fill-gray-600">
+                <path fill="none" d="M0 0h24v24H0z" />
+                <path
+                    d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2zm0 9V8l-4 4 4 4v-3h4v-2h-4z" />
+            </svg>
+            <span>PREVIOUS</span>
+        </button>
+           </div>
         </div>
-        <div class="mt-10 flex mx-40 justify-between relative space-x-6 h-[33rem]">
+        <div class="mt-5 flex xl:mx-40 lg:mx-10 justify-between relative space-x-6 h-[33rem]">
             <div class="bg-white font-rubik bg-opacity-70 rounded-3xl p-2 shadow-xl flex-1">
                 <div class="bg-white relative p-4 h-full rounded-3xl">
                     <h1 class="font-bold text-lg text-gray-600">CHECK-IN DETAILS</h1>

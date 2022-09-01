@@ -29,7 +29,7 @@
             <x-app.table-heading />
         </x-slot:thead>
         @forelse ($rooms as $room)
-            <tr>
+            <x-app.table-row>
                 <x-app.table-data>
                     Room #{{ $room->number }}
                 </x-app.table-data>
@@ -54,9 +54,9 @@
                             label="Edit" />
                     </div>
                 </x-app.table-data>
-            </tr>
+            </x-app.table-row>
         @empty
-            <tr>
+            <x-app.table-row>
                 <x-app.table-data col="4">
                     <div class="text-center">
                         <p class="text-lg font-medium">
@@ -64,7 +64,7 @@
                         </p>
                     </div>
                 </x-app.table-data>
-            </tr>
+            </x-app.table-row>
         @endforelse
         <x-slot:pagination>
             {{ $rooms->links() }}

@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::prefix('/kiosk')->middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -62,6 +63,7 @@ Route::prefix('/kitchen')->middleware([
 Route::get('/', function () {
     return view('welcome');
 });
+
 
 Route::middleware([
     'auth:sanctum',

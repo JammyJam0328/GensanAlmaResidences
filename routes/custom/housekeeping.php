@@ -15,4 +15,7 @@ Route::prefix('house-keeping')->middleware([
   Route::get('/room-boy', function () {
     return view('housekeeping-pages.room-boy');
   })->name('house-keeping.room-boy');
+  Route::get('/rooms-monitoring', function () {
+    return view('housekeeping-pages.rooms-monitoring');
+  })->name('house-keeping.rooms-monitoring');
 });

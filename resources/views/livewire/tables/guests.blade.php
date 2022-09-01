@@ -13,7 +13,7 @@
             <x-app.table-heading />
         </x-slot:thead>
         @forelse ($guests as $guest)
-            <tr>
+            <x-app.table-row>
                 <x-app.table-data>
                     {{ $guest->qr_code }}
                 </x-app.table-data>
@@ -26,13 +26,13 @@
                 <x-app.table-data>
                     <div class="flex justify-end space-x-2">
                         <x-app.btn-default showLoading
-                            wire:click='setGuest({{ $guest->id }})'
+                            wire:click="setGuest({{ $guest->id }})"
                             label="View" />
                     </div>
                 </x-app.table-data>
-            </tr>
+            </x-app.table-row>
         @empty
-            <tr>
+            <x-app.table-row>
                 <x-app.table-data col="4">
                     <div class="text-center">
                         <p class="text-lg font-medium">
@@ -40,7 +40,7 @@
                         </p>
                     </div>
                 </x-app.table-data>
-            </tr>
+            </x-app.table-row>
         @endforelse
         <x-slot:pagination>
             {{ $guests->links() }}

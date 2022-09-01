@@ -45,6 +45,8 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/custom/dummy-kiosk.php'));
             Route::middleware('web')
                 ->group(base_path('routes/custom/housekeeping.php'));
+            Route::middleware('web')
+                ->group(base_path('routes/custom/roomboy.php'));
         });
     }
 

@@ -17,4 +17,7 @@ Route::prefix('admin')->middleware([
     Route::get('/guests', function () {
         return view('admin-pages.guests');
     })->name('admin.guests');
+    Route::get('/manage-users', function () {
+        return view('admin-pages.manage-users');
+    })->name('admin.manage-users');
 });

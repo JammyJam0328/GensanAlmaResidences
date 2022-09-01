@@ -12,4 +12,5 @@
             <x-app.page-title text="Room Boy" />
         </div>
     </x-slot:header>
+
 </x-housekeeping-layout>

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\RoomBoy;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -40,16 +41,22 @@ class UserSeeder extends Seeder
             'password'=>bcrypt('password'),
         ]);
         User::create([
-            'role_id'=>5,
-            'name'=>"Bell Boy",
-            'email'=>'bellboy@gmail.com',
-            'password'=>bcrypt('password'),
-        ]);
-        User::create([
             'role_id'=>6,
             'name'=>"House Keeping",
             'email'=>'housekeeping@gmail.com',
             'password'=>bcrypt('password'),
         ]);
+
+        for ($i=0; $i < 99 ; $i++) { 
+            $user = User::create([
+                'role_id'=>5,
+                'name'=>fake()->name,
+                'email'=>fake()->email,
+                'password'=>bcrypt('password'),
+            ]);
+            RoomBoy::create([
+                'user_id'=>$user->id,
+            ]);
+        }
     }
 }

@@ -26,4 +26,9 @@ class Room extends Model
     {
         return $this->hasMany(CheckInDetail::class);
     }
+
+    public function room_boys()
+    {
+        return $this->hasMany(RoomBoy::class);
+    }
 }

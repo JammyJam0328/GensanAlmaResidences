@@ -1,5 +1,5 @@
 const colors = require('tailwindcss/colors')
-const defaultTheme = require('tailwindcss/defaultTheme')
+const themeDefaults = require('tailwindcss/defaultTheme')
 
 module.exports = {
     content: [
@@ -15,10 +15,8 @@ module.exports = {
                 warning: colors.yellow,
             },
             fontFamily: {
-                inter: ['Inter', defaultTheme.fontFamily.sans],
-                rubik: ['Rubik', ...defaultTheme.fontFamily.sans],
+                inter: ['Inter', ...themeDefaults.fontFamily.sans],
             },
-            
         },
     },
     plugins: [

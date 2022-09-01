@@ -16,7 +16,7 @@
             <x-app.table-heading />
         </x-slot:thead>
         @forelse ($rates as $rate)
-            <tr>
+            <x-app.table-row>
                 <x-app.table-data>
                     {{ $rate->staying_hour->number }} {{ Str::plural('hour', $rate->staying_hour->number) }}
                 </x-app.table-data>
@@ -32,7 +32,7 @@
                             label="Edit" />
                     </div>
                 </x-app.table-data>
-            </tr>
+            </x-app.table-row>
         @empty
             <tr>
                 <x-app.table-data col="4">

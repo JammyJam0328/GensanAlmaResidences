@@ -34,6 +34,13 @@
                         <x-icons.room-boy class="h-6" />
                     </x-slot:icon>
                 </x-housekeeping.nav-link>
+                <x-housekeeping.nav-link route="{{ route('house-keeping.rooms-monitoring') }}"
+                    isActive="{{ request()->is('house-keeping/rooms-monitoring*') }}"
+                    label="Rooms Monitoring">
+                    <x-slot:icon>
+                        <x-icons.rooms-monitoring class="h-6" />
+                    </x-slot:icon>
+                </x-housekeeping.nav-link>
             </nav>
         </div>
     </div>

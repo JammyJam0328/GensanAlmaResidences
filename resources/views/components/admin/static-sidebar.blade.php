@@ -41,6 +41,13 @@
                         <x-icons.guests class="h-6" />
                     </x-slot:icon>
                 </x-admin.nav-link>
+                <x-admin.nav-link route="{{ route('admin.manage-users') }}"
+                    isActive="{{ request()->is('admin/manage-users*') }}"
+                    label="Manage Users">
+                    <x-slot:icon>
+                        <x-icons.users class="h-6" />
+                    </x-slot:icon>
+                </x-admin.nav-link>
             </nav>
         </div>
     </div>

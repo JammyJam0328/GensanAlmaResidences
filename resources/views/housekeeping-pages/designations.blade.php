@@ -12,4 +12,8 @@
             <x-app.page-title text="Designations" />
         </div>
     </x-slot:header>
+    <div class="space-y-3">
+        <livewire:tables.designations />
+        <livewire:process.manage-designation />
+    </div>
 </x-housekeeping-layout>

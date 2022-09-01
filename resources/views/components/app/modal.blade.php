@@ -36,7 +36,7 @@
                 x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                 x-on:keydown.escape.window="{{ $showIf }}=false"
                 @if ($disableClickAway == false) x-on:click.away="{{ $showIf }}=false" @endif
-                class="relative px-4 pt-5 pb-4 overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl sm:my-8 sm:max-w-6xl {{ $width }} sm:p-6">
+                class="relative px-4 pt-5 pb-4 overflow-visible text-left transition-all transform bg-white rounded-lg shadow-xl sm:my-8  sm:max-w-6xl {{ $width }} sm:p-6">
                 <div>
                     <div class="flex justify-between">
                         <h1 class="text-2xl text-primary-700">{{ $title }}</h1>

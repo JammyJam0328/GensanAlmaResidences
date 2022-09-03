@@ -28,6 +28,7 @@
             display: none !important;
         }
     </style>
+    @wireUiScripts
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <!-- Styles -->
@@ -39,6 +40,9 @@
     {{ $slot }}
     @livewire('notifications')
     @livewire('app.confirm-dialog')
+    <x-notifications z-index="z-50" />
+    <x-dialog z-index="z-50"
+        align="center" />
     @livewireScripts
 </body>
 

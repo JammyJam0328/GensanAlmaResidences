@@ -9,7 +9,8 @@
             <div class="p-2 mb-2 space-y-1 bg-white border border-red-500 rounded-lg">
                 <h1>Currently cleaning : ROOM # {{ auth()->user()->room_boy->room->number }} </h1>
                 <div>
-                    <x-button label="Finish"
+                    <x-button wire:click="finish({{ auth()->user()->room_boy->room_id }})"
+                        label="Finish"
                         negative />
                 </div>
             </div>

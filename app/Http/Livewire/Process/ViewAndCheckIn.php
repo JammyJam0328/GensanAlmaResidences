@@ -35,7 +35,6 @@ class ViewAndCheckIn extends Component
     }
     public function confirmCheckIn()
     {
-
         $this->confirm([
             'title' => 'Confirm Check In',
             'description' => 'Are you sure you want to check in this guest?',

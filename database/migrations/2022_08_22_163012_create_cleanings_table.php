@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('room_boy_id')->constrained();
             $table->foreignId('room_id')->constrained();
+            $table->dateTime('suppose_to_start')->nullable();
+            $table->dateTime('started_at')->nullable();
             $table->dateTime('finish_at')->nullable();
             $table->boolean('delayed')->nullable();
             $table->timestamps();

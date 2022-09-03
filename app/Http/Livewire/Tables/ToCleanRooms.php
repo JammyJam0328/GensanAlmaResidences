@@ -54,7 +54,7 @@ class ToCleanRooms extends Component
             'room_boy_id' => auth()->user()->room_boy->id,
             'room_id' => $room->id,
             'suppose_to_start' => $room->time_to_clean,
-            'start_at' => Carbon::now(),
+            'started_at' => Carbon::now(),
         ]);
         auth()->user()->room_boy->update([
             'is_cleaning' => 1,

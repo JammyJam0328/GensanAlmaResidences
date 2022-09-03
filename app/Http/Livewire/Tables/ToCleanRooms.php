@@ -29,14 +29,14 @@ class ToCleanRooms extends Component
         if (auth()->user()->room_boy->is_cleaning) {
             return;
         }
-        $this->room = $room_id;
-        $this->dialog([
+        $this->dialog()->confirm([
             'title'       => 'Are you Sure?',
             'description' => 'Do you want to continue this action?',
             'icon'        => 'question',
             'accept'      => [
                 'label'  => 'Yes, save it',
                 'method' => 'confirmStartRoomCleaning',
+                'params' => $room_id,
             ],
             'reject' => [
                 'label'  => 'No, cancel',
@@ -44,9 +44,9 @@ class ToCleanRooms extends Component
         ]);
     }
 
-    public function confirmStartRoomCleaning()
+    public function confirmStartRoomCleaning($room_id)
     {
-        $room = Room::where('id', $this->room)->first();
+        $room = Room::where('id', $room_id)->first();
         $room->update([
             'room_status_id' => 8
         ]);
@@ -58,7 +58,7 @@ class ToCleanRooms extends Component
         ]);
         auth()->user()->room_boy->update([
             'is_cleaning' => 1,
-            'room_id' => $this->room,
+            'room_id' => $room_id,
         ]);
     }
     public function finish($room_id)

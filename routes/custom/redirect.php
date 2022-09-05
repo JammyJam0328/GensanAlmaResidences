@@ -9,7 +9,7 @@ Route::middleware([
         $role = auth()->user()->role_id;
         switch ($role) {
           case  Role::admin():
-            return redirect()->route('admin.dashboard');
+            return redirect()->route('re-admin.dashboard');
             break;
           case Role::frontdesk():
             return redirect()->route('frontdesk.dashboard');

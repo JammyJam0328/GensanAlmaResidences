@@ -27,7 +27,8 @@ Route::prefix('admin')->middleware([
 Route::prefix('re/admin')->middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
-    'verified'
+    'verified',
+    'admin'
 ])->group(function () {
      Route::get('/dashboard', function () {
         return view('re-design.admin.dashboard');

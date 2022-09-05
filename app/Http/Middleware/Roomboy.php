@@ -16,7 +16,7 @@ class Roomboy
      */
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->user()->rol_id!==5) {
+        if (auth()->user()->role_id!==5) {
             return redirect()->back();
         }
         return $next($request);

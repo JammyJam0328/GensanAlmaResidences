@@ -199,7 +199,7 @@
             </div>
         </div>
         <div class="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col">
-            <div class="flex flex-col flex-1 min-h-0 bg-white border-r border-gray-200">
+            <div class="flex flex-col flex-1 min-h-0 bg-white border-r-2 border-primary-400">
                 <div class="flex flex-col flex-1 pb-4 overflow-y-auto">
                     <div class="flex items-center flex-shrink-0 space-x-2">
                         <div class="w-full px-5 py-4 space-y-1 text-primary-600">
@@ -276,12 +276,15 @@
                 </button>
             </div>
             <main class="flex-1">
-                <div class="py-6">
-                    <div class="flex justify-between px-4 mx-auto max-w-7xl sm:px-6 md:px-8">
-                        <h1 class="text-2xl font-semibold text-gray-900">
-                            @yield('title')
-                        </h1>
-                    </div>
+                <div class="py-2">
+                    <x-admin.sticky-top>
+                        <div class="flex items-center py-3 justify-between px-4 mx-auto max-w-7xl sm:px-6 md:px-8">
+                            <h1 class="text-2xl font-semibold text-gray-900">
+                                @yield('title')
+                            </h1>
+                            <x-admin.quick-menus />
+                        </div>
+                    </x-admin.sticky-top>
                     <div class="px-4 mx-auto mt-3 max-w-7xl sm:px-6 md:px-8">
                         @yield('content')
                     </div>

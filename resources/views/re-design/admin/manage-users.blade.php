@@ -1,8 +1,25 @@
+@php
+$roles = \App\Models\Role::get()
+    ->mapWithKeys(function ($role) {
+        return [
+            $role->id => $role->name,
+        ];
+    })
+    ->toArray();
+@endphp
+
 @extends('layouts.admin')
 @section('title', 'Users')
 @section('content')
     <div>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente cum quam aliquid, repellat voluptate, eaque fugit
-        quidem magni rerum, ipsam quia praesentium quibusdam doloribus! Ea ab expedita rem natus excepturi?
+        @livewire('re.admin.user-list', [
+            'roles' => $roles,
+        ])
+        @livewire('re.admin.create-user', [
+            'roles' => $roles,
+        ])
+        @livewire('re.admin.edit-user', [
+            'roles' => $roles,
+        ])
     </div>
 @endsection

@@ -1,7 +1,7 @@
 <div id="logoutDialog">
     <div x-cloak
         x-show="isOpen"
-        class="relative z-40"
+        class="relative z-50"
         aria-labelledby="modal-title"
         role="dialog"
         aria-modal="true">

@@ -1,6 +1,6 @@
 <div>
     @php
-        $headers = ['Hours', 'Amount', 'Room Type', ''];
+        $headers = ['Room Number', 'Floor', 'Status', 'Types', ''];
     @endphp
     <div class="mt-5">
         <div class="flex flex-col">
@@ -8,12 +8,24 @@
                 <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                     <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                         <div class="flex justify-between px-2 py-3 bg-white border-b border-gray-200 sm:px-6">
-                            <div>
+                            <div class="flex space-x-2">
+                                <x-native-select wire:model.debounce="filter.floor">
+                                    <option value="all">All</option>
+                                    @foreach ($floors as $id => $number)
+                                        <option value="{{ $id }}">{{ $number }}</option>
+                                    @endforeach
+                                </x-native-select>
+                                <x-native-select wire:model.debounce="filter.room_status">
+                                    <option value="all">All</option>
+                                    @foreach ($roomStatuses as $id => $name)
+                                        <option value="{{ $id }}">{{ $name }}</option>
+                                    @endforeach
+                                </x-native-select>
                             </div>
                             <div>
                                 <x-button primary
-                                    wire:click="$emit('createRate')"
-                                    label="Add Rate" />
+                                    wire:click="$emit('createRoom')"
+                                    label="Add Room" />
                             </div>
                         </div>
                         <table class="min-w-full divide-y divide-gray-300">
@@ -27,37 +39,46 @@
                                 </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
-                                @forelse ($rates as $rate)
+                                @forelse ($rooms as $room)
                                     <tr>
                                         <td
                                             class="py-4 pl-4 pr-3 text-sm font-medium text-gray-900 whitespace-nowrap sm:pl-6">
-                                            {{ $rate->staying_hour->number }}
+                                            ROOM # {{ $room->number }}
                                         </td>
                                         <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
-                                            {{ $rate->amount }}
+                                            {{ ordinal($room->floor->number) }} Floor
                                         </td>
                                         <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
-                                            {{ $rate->type->name }}
+                                            {{ $room->room_status->name }}
+                                        </td>
+                                        <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
+                                            <div>
+                                                @if (count($room->types))
+                                                    {{ implode('/', $room->types->pluck('name')->toArray()) }}
+                                                @else
+                                                    No Types
+                                                @endif
+                                            </div>
                                         </td>
                                         <td
                                             class="relative py-4 pl-3 pr-4 text-sm font-medium text-right whitespace-nowrap sm:pr-6">
-                                            <button wire:key="{{ $rate->id }}"
-                                                wire:click="$emit('editRate', '{{ $rate->id }}')"
+                                            <button wire:key="{{ $room->id }}"
+                                                wire:click="$emit('editRoom', '{{ $room->id }}')"
                                                 class="uppercase text-primary-600 hover:text-primary-900">Edit</button>
                                         </td>
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="4"
+                                        <td colspan="5"
                                             class="py-4 pl-4 pr-3 text-sm font-medium text-gray-900 whitespace-nowrap sm:pl-6">
-                                            No Rates Found</td>
+                                            No Room Found</td>
                                     </tr>
                                 @endforelse
                             </tbody>
                         </table>
                     </div>
                     <div class="py-2">
-                        {{ $rates->links() }}
+                        {{ $rooms->links() }}
                     </div>
                 </div>
             </div>

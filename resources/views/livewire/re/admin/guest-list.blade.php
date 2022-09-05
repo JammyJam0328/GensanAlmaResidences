@@ -1,6 +1,6 @@
 <div>
     @php
-        $headers = ['Hours', 'Amount', 'Room Type', ''];
+        $headers = ['Qr Code', 'Name', 'Contact Number', 'Check In At', ''];
     @endphp
     <div class="mt-5">
         <div class="flex flex-col">
@@ -8,12 +8,9 @@
                 <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                     <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                         <div class="flex justify-between px-2 py-3 bg-white border-b border-gray-200 sm:px-6">
-                            <div>
-                            </div>
-                            <div>
-                                <x-button primary
-                                    wire:click="$emit('createRate')"
-                                    label="Add Rate" />
+                            <div class="flex space-x-2">
+                                <x-input icon="search"
+                                    placeholder="Search..." />
                             </div>
                         </div>
                         <table class="min-w-full divide-y divide-gray-300">
@@ -27,37 +24,41 @@
                                 </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
-                                @forelse ($rates as $rate)
+                                @forelse ($guests as $guest)
                                     <tr>
                                         <td
                                             class="py-4 pl-4 pr-3 text-sm font-medium text-gray-900 whitespace-nowrap sm:pl-6">
-                                            {{ $rate->staying_hour->number }}
+                                            {{ $guest->qr_code }}
                                         </td>
                                         <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
-                                            {{ $rate->amount }}
+                                            {{ $guest->name }}
                                         </td>
                                         <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
-                                            {{ $rate->type->name }}
+                                            {{ $guest->contact_number }}
+                                        </td>
+                                        <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
+                                            {{ $guest->check_in_at }}
                                         </td>
                                         <td
-                                            class="relative py-4 pl-3 pr-4 text-sm font-medium text-right whitespace-nowrap sm:pr-6">
-                                            <button wire:key="{{ $rate->id }}"
-                                                wire:click="$emit('editRate', '{{ $rate->id }}')"
-                                                class="uppercase text-primary-600 hover:text-primary-900">Edit</button>
+                                            class="relative py-2.5 pl-3 pr-4 text-sm font-medium text-right whitespace-nowrap sm:pr-6">
+                                            <x-button wire:key="{{ $guest->id }}"
+                                                xs
+                                                label="View"
+                                                x-on:click="$wire.emit('viewGuest',' {{ $guest->id }}');" />
                                         </td>
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="4"
+                                        <td colspan="5"
                                             class="py-4 pl-4 pr-3 text-sm font-medium text-gray-900 whitespace-nowrap sm:pl-6">
-                                            No Rates Found</td>
+                                            No guest Found</td>
                                     </tr>
                                 @endforelse
                             </tbody>
                         </table>
                     </div>
                     <div class="py-2">
-                        {{ $rates->links() }}
+                        {{ $guests->links() }}
                     </div>
                 </div>
             </div>

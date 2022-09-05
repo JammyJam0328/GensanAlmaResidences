@@ -1,8 +1,14 @@
 @extends('layouts.admin')
 @section('title', 'Guests')
 @section('content')
-    <div>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente cum quam aliquid, repellat voluptate, eaque fugit
-        quidem magni rerum, ipsam quia praesentium quibusdam doloribus! Ea ab expedita rem natus excepturi?
+    <div x-data="{ view: false }"
+        x-on:guest-ready.window="view=true">
+        <div x-show="view==false">
+            @livewire('re.admin.guest-list')
+        </div>
+        <div x-cloak
+            x-show="view">
+            @livewire('re.admin.view-guest')
+        </div>
     </div>
 @endsection

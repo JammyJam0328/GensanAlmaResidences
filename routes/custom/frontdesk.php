@@ -4,7 +4,8 @@
 Route::prefix('frontdesk')->middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
-    'verified'
+    'verified',
+    'frontdesk'
 ])->group(function () {
     Route::get('/dashboard', function () {
         return view('frontdesk-pages.dashboard');

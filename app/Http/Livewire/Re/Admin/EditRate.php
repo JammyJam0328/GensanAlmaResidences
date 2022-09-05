@@ -6,10 +6,10 @@ use App\Models\{Rate, StayingHour, Type};
 use Livewire\Component;
 use Filament\Forms;
 use Filament\Forms\Components\{TextInput, Grid, Select};
-
+use WireUi\Traits\Actions;
 class EditRate extends Component implements Forms\Contracts\HasForms
 {
-    use Forms\Concerns\InteractsWithForms;
+    use Forms\Concerns\InteractsWithForms, Actions;
     public $staying_hour_id, $room_type_id, $amount;
     public $roomTypes=[],$stayingHours=[];
     public $modalOpen = false;
@@ -59,6 +59,10 @@ class EditRate extends Component implements Forms\Contracts\HasForms
             'amount' => $this->amount,
         ]);
         $this->reset('staying_hour_id', 'room_type_id', 'amount');
+        $this->notification()->success(
+            $title = 'Success',
+            $description = 'Rate has been updated successfully'
+        );
         $this->modalOpen = false;
         $this->emit('refreshTable');
     }

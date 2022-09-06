@@ -12,7 +12,7 @@ Route::middleware([
             return redirect()->route('re-admin.dashboard');
             break;
           case Role::frontdesk():
-            return redirect()->route('frontdesk.dashboard');
+            return redirect()->route('re-frontdesk.dashboard');
             break;
           case Role::kitchen():
             return redirect()->route('kitchen.dashboard');

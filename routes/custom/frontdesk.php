@@ -26,3 +26,26 @@ Route::prefix('frontdesk')->middleware([
         return view('frontdesk-pages.rooms');
     })->name('frontdesk.rooms');
 });
+
+Route::prefix('re/frontdesk')->middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+    'frontdesk'
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('re-design.frontdesk.dashboard');
+    })->name('re-frontdesk.dashboard');
+    Route::get('/check-in', function () {
+        return view('re-design.frontdesk.check-in');
+    })->name('re-frontdesk.check-in');
+    Route::get('/check-out', function () {
+        return view('re-design.frontdesk.check-out');
+    })->name('re-frontdesk.check-out');
+    Route::get('/guests', function () {
+        return view('re-design.frontdesk.guests');
+    })->name('re-frontdesk.guests');
+    Route::get('/room-monitoring', function () {
+        return view('re-design.frontdesk.room-monitoring');
+    })->name('re-frontdesk.room-monitoring');
+});

@@ -116,6 +116,7 @@
                             @endforeach
                         </dl>
                     </div>
+
                 </div>
                 <div class="mt-5">
                     <h1 class="text-lg font-semibold">Balance :

@@ -21,6 +21,6 @@ class DatabaseSeeder extends Seeder
         $this->call(GensanAlmaResidencesRates::class);
         $this->call(DummyRoomSeeder::class);
         $this->call(TransactionTypesSeeder::class);
-        // $this->call(DummyCheckIn::class);
+        $this->call(DummyCheckIn::class);
     }
 }

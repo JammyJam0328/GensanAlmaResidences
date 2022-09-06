@@ -239,7 +239,7 @@
                         <x-frontdesk.nav-link activeColor="bg-primary-500"
                             route="{{ route('re-frontdesk.guests') }}"
                             isActive="{{ request()->is('re/frontdesk/guests*') }}"
-                            label="Guests">
+                            label="Guest Transactions">
                             <x-slot:icon>
                                 <x-icons.guests class="h-6" />
                             </x-slot:icon>
@@ -278,7 +278,7 @@
             <main class="flex-1">
                 <div class="py-2">
                     <x-admin.sticky-top>
-                        <div class="flex items-center py-3 justify-between px-4 mx-auto max-w-7xl sm:px-6 md:px-8">
+                        <div class="flex items-center justify-between px-4 py-3 mx-auto max-w-7xl sm:px-6 md:px-8">
                             <h1 class="text-2xl font-semibold text-gray-900">
                                 @yield('title')
                             </h1>

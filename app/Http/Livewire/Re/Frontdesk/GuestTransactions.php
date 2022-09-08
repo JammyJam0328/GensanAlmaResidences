@@ -49,6 +49,14 @@ class GuestTransactions extends Component
         $this->guest = Guest::where('qr_code', $this->search)
             ->where('is_checked_in', 1)
             ->where('totaly_checked_out', 0)
+            ->with([
+                'transactions' => [
+                    'check_in_detail' => [
+                        'room'
+                    ]
+                ],
+                'damages.room'
+            ])
             ->first();
         if ($this->guest) {
             $this->loadTransactions = true;
@@ -113,13 +121,24 @@ class GuestTransactions extends Component
     }
     public function payTransaction($transaction_id)
     {
-        $transaction = Transaction::where('id',$transaction_id)->first();
+        $transaction = Transaction::where('id', $transaction_id)->first();
         $transaction->update([
-            'paid_at'=>now()
+            'paid_at' => now()
         ]);
         $this->notification()->success(
             $title = 'Success',
             $description = 'Transaction has been paid successfully'
+        );
+    }
+    public function payDamage($damage_id)
+    {
+        $damage = $this->guest->damages()->where('id', $damage_id)->first();
+        $damage->update([
+            'paid_at' => now()
+        ]);
+        $this->notification()->success(
+            $title = 'Success',
+            $description = 'Damage has been paid successfully'
         );
     }
     public function render()
@@ -127,12 +146,10 @@ class GuestTransactions extends Component
         return view('livewire.re.frontdesk.guest-transactions', [
             'transactions' => $this->loadTransactions ?
                 $this->guest->transactions()
-                ->with(['transaction_type', 'check_in_detail.room'])
                 ->get()
                 : [],
             'guest_damages' => $this->loadTransactions ?
                 $this->guest->damages()
-                ->with(['room'])
                 ->get()
                 : [],
         ]);

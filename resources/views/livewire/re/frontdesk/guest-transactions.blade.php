@@ -35,6 +35,9 @@
             </div>
         </x-card>
     </div>
+    <div wire:key="guestinfo">
+        @include('re-design.sub.guest-information')
+    </div>
     <div wire:key="transactions">
         @include('re-design.sub.guest-transactions-list')
     </div>

@@ -42,9 +42,16 @@
                                             </td>
                                             <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
                                                 @if ($room->room_status_id == 2)
-                                                    <x-countdown :expires="new Carbon\Carbon(
-                                                        $room->check_in_details->first()->expected_check_out_at,
-                                                    )" />
+                                                    @php
+                                                        $expires = new Carbon\Carbon($room->check_in_details->first()->expected_check_out_at);
+                                                    @endphp
+                                                    @if ($expires->isPast())
+                                                        <span class="text-red-500">
+                                                            {{ $expires->diffForHumans() }}
+                                                        </span>
+                                                    @else
+                                                        <x-countdown :expires="$expires" />
+                                                    @endif
                                                 @else
                                                     --
                                                 @endif

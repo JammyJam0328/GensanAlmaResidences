@@ -34,14 +34,7 @@
                             {{ $guest->check_in_at }}
                         </dd>
                     </div>
-                    <div class="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:px-6">
-                        <dt class="text-sm font-bold text-gray-900">
-                            TOTAL AMOUNT TO PAY
-                        </dt>
-                        <dd class="mt-1 text-sm font-bold text-gray-900 sm:col-span-2 sm:mt-0">
-                            {{ $guest->transactions->where('paid_at', null)->sum('payable_amount') + $guest->damages->where('paid_at', null)->sum('payable_amount') }}
-                        </dd>
-                    </div>
+
                 </dl>
             </div>
         </div>

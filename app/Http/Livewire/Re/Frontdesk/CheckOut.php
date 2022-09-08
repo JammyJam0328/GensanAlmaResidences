@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Re\Frontdesk;
 use Carbon\Carbon;
 use App\Models\Room;
 use App\Models\Guest;
+use App\Models\Damage;
 use Livewire\Component;
 use WireUi\Traits\Actions;
 use App\Models\Transaction;
@@ -103,7 +104,7 @@ class CheckOut extends Component
     }
     public function checkOut($transaction_id)
     {
-         $this->dialog()->confirm([
+        $this->dialog()->confirm([
             'title'       => 'Are you Sure?',
             'description' => 'You are about to check out this room.',
             'icon'        => 'question',
@@ -159,7 +160,8 @@ class CheckOut extends Component
 
     public function totalyCheckOutConfirm()
     {
-        if ($this->guest->transactions->where('paid_at', null)->count() == 0) {
+        $balance =  $this->guest->transactions->where('paid_at', null)->sum('payable_amount') + $this->guest->damages->where('paid_at', null)->sum('payable_amount');
+        if ($balance==0) {
             $this->guest->update([
                 'totaly_checked_out' => 1,
             ]);
@@ -176,10 +178,46 @@ class CheckOut extends Component
             return;
         }
     }
+    public function payDamage($damage_id)
+    {
+        $this->dialog()->confirm([
+            'title'       => 'Are you Sure?',
+            'description' => 'Do you want to continue?',
+            'icon'        => 'question',
+            'accept'      => [
+                'label'  => 'Yes, Pay',
+                'method' => 'confirmPayDamage',
+                'params' =>  $damage_id,
+            ],
+            'reject' => [
+                'label'  => 'No, cancel',
+            ],
+        ]);
+    }
+    public function confirmPayDamage($damage_id)
+    {
+        $damage = Damage::find($damage_id);
+        $damage->update([
+            'paid_at' => now(),
+        ]);
+        $this->notification()->success(
+            $title = "Success",
+            $description = "Damage has been paid!"
+        );
+    }
     public function render()
     {
-        return view('livewire.re.frontdesk.check-out',[
-            'transactions' => $this->guest != null ? $this->guest->transactions()->with(['transaction_type', 'check_in_detail.room'])->orderBy('created_at', 'desc')->get() : null
+        return view('livewire.re.frontdesk.check-out', [
+            'transactions' => $this->guest != null ?
+                $this->guest->transactions()
+                ->with(['transaction_type'])
+                ->orderBy('created_at', 'desc')
+                ->get()
+                : [],
+            'damages' => $this->guest != null ?
+                $this->guest->damages()
+                ->get()
+                : [],
         ]);
     }
 }

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('item');
             $table->dateTime('occured_at');
             $table->string('payable_amount');
+            $table->string('paid_at')->nullable();
             $table->timestamps();
         });
     }

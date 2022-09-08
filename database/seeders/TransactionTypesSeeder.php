@@ -30,6 +30,8 @@ class TransactionTypesSeeder extends Seeder
         TransactionType::create([
             'name' => 'Cashout',
         ]);
-        
+        TransactionType::create([
+            'name' => 'Extend',
+        ]);
     }
 }

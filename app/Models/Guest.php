@@ -13,4 +13,8 @@ class Guest extends Model
     {
         return $this->hasMany(Transaction::class);
     }
+    public function damages()
+    {
+        return $this->hasMany(Damage::class);
+    }
 }

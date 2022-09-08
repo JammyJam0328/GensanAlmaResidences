@@ -31,4 +31,8 @@ class Room extends Model
     {
         return $this->hasMany(RoomBoy::class);
     }
+    public function damages()
+    {
+        return $this->hasMany(Damages::class);
+    }
 }

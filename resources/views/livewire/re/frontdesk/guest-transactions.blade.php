@@ -7,7 +7,7 @@
                     <div class="relative">
                         <x-input placeholder="Scan or Type QR Code"
                             wire:model.defer="search"
-                            icon="Search" />
+                            icon="search" />
                         <div>
                             @if ($search != '')
                                 <button type="button"

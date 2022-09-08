@@ -50,4 +50,7 @@
     <div wire:key="extendmodal">
         @include('re-design.sub.extend-form')
     </div>
+    <div wire:key="changemodal">
+        @include('re-design.sub.change-room-form')
+    </div>
 </div>

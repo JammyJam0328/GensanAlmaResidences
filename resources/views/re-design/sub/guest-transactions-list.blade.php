@@ -20,7 +20,8 @@
                          @if ($loadTransactions == true)
                              <x-button wire:click="$set('extendModal',true)"
                                  label="Extend" />
-                             <x-button label="Change Room" />
+                             <x-button wire:click="$set('changeRoomModal',true)"
+                                 label="Change Room" />
                          @endif
                      </div>
                  </div>

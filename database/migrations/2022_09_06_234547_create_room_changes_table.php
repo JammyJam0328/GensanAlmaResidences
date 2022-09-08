@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('room_changes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('check_in_detail_id')->constrained();
-            $table->string('from_room');
-            $table->string('to_room');
+            $table->unsignedBigInteger('from_room_id')->references('id')->on('rooms');
+            $table->unsignedBigInteger('to_room_id')->references('id')->on('rooms');
             $table->string('reason');
             $table->timestamps();
         });

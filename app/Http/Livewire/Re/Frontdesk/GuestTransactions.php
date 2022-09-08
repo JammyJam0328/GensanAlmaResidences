@@ -3,8 +3,10 @@
 namespace App\Http\Livewire\Re\Frontdesk;
 
 use Carbon\Carbon;
+use App\Models\Room;
 use App\Models\Guest;
 use Livewire\Component;
+use App\Models\RoomChange;
 use WireUi\Traits\Actions;
 use App\Models\Transaction;
 use Livewire\WithPagination;
@@ -19,6 +21,7 @@ class GuestTransactions extends Component
     public $selected_guest = null;
     public $addDamageModal = false;
     public $extendModal = false;
+    public $changeRoomModal = false;
     public $rooms = [];
     public $damages = [
         'Remote Control',
@@ -37,6 +40,7 @@ class GuestTransactions extends Component
     ];
     public $damaged_item, $amount, $room_id, $occured_at, $paid = false;
     public $checked_in_room, $hours, $extension_amount, $extention_paid = false;
+    public $from_room, $to_room, $reason;
     protected $validationAttributes = [
         'damaged_item' => 'Damaged Item',
         'amount' => 'Amount',
@@ -139,6 +143,45 @@ class GuestTransactions extends Component
         $this->notification()->success(
             $title = 'Success',
             $description = 'Damage has been paid successfully'
+        );
+    }
+    public function saveChangeRoom()
+    {
+        $this->validate([
+            'from_room' => 'required',
+            'to_room' => 'required',
+            'reason' => 'required',
+        ]);
+        $check_in_detail = CheckInDetail::where('id', $this->from_room)->first();
+        $fromRoom = $check_in_detail->room;
+        $toRoom = Room::where('id', $this->to_room)->first();
+        if ($fromRoom->id == $toRoom->id) {
+            $this->notification()->error(
+                $title = 'Error',
+                $description = 'From and To Room cannot be same'
+            );
+            return;
+        }
+        $check_in_detail->update([
+            'room_id' => $this->to_room,
+        ]);
+        RoomChange::create([
+            'check_in_detail_id' => $check_in_detail->id,
+            'from_room_id' => $this->from_room,
+            'to_room_id' => $this->to_room,
+            'reason' => $this->reason,
+        ]);
+        $fromRoom->update([
+            'room_status_id' => 5,
+        ]);
+        $toRoom->update([
+            'room_status_id' => 2,
+        ]);
+        $this->changeRoomModal = false;
+        $this->reset('from_room', 'to_room', 'reason');
+        $this->notification()->success(
+            $title = 'Success',
+            $description = 'Room has been changed successfully'
         );
     }
     public function render()

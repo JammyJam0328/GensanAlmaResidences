@@ -9,6 +9,7 @@ use App\Models\RoomType;
 use App\Models\Rate;
 use App\Models\Guest;
 use App\Models\Transaction;
+use App\Models\Type;
 use Carbon\Carbon;
 
 class Checkin extends Component
@@ -22,7 +23,7 @@ class Checkin extends Component
     public $transaction = [];
     public $room_array = 0;
     public $manage_room;
-    public $room_key;
+    public $type_key;
     public $room_type;
     public $customer_name;
     public $customer_number;
@@ -31,8 +32,8 @@ class Checkin extends Component
     public function render()
     {
         return view('livewire.kiosk.checkin', [
-            'rooms' => Room::where('room_status_id', 1)->with('floor')->get(),
-            'roomtypes' => RoomType::where('room_id', $this->manage_room)->get(),
+            'rooms' => Room::where('room_status_id', 1)->where('type_id', $this->type_key)->with('floor')->get(),
+            'roomtypes' => Type::get(),
             // 'rates' => Rate::where('type_id', 'like', '%'.$this->room_key.'%')->get(),
         ]);
     }
@@ -45,34 +46,42 @@ class Checkin extends Component
         ]);
     }
 
-    public function selectRoom($room_id)
-    {
-        if ($this->transaction == null) {
+    // public function selectRoom($room_id)
+    // {
+    //     if ($this->transaction == null) {
 
+    //         array_push($this->transaction, $this->get_room);
+    //         $this->transaction[$this->room_array]['room_id'] = $room_id;
+    //         $this->room_array++;
+    //     } else {
+
+    //         $room_exists = collect($this->transaction)->contains(function ($value, $key) use ($room_id) {
+    //             return $value['room_id'] == $room_id;
+    //         });
+
+    //         if ($room_exists) {
+    //             // $this->notification([
+    //             //     'title'       => 'Room',
+    //             //     'description' => 'Room already exists',
+    //             //     'icon'        => 'info'
+
+    //             // ]);
+    //             dd('Room already exists');
+    //         } else {
+    //             array_push($this->transaction, $this->get_room);
+    //             $this->transaction[$this->room_array]['room_id'] = $room_id;
+    //             $this->room_array++;
+    //         }
+    //     }
+    // }
+
+
+        public function selectRoomType($type_id){
             array_push($this->transaction, $this->get_room);
-            $this->transaction[$this->room_array]['room_id'] = $room_id;
+            $this->transaction[$this->room_array]['type_id'] = $type_id;
             $this->room_array++;
-        } else {
-
-            $room_exists = collect($this->transaction)->contains(function ($value, $key) use ($room_id) {
-                return $value['room_id'] == $room_id;
-            });
-
-            if ($room_exists) {
-                // $this->notification([
-                //     'title'       => 'Room',
-                //     'description' => 'Room already exists',
-                //     'icon'        => 'info'
-
-                // ]);
-                dd('Room already exists');
-            } else {
-                array_push($this->transaction, $this->get_room);
-                $this->transaction[$this->room_array]['room_id'] = $room_id;
-                $this->room_array++;
-            }
+            $this->type_key = $type_id;
         }
-    }
 
     public function manageRoom($key){
         $this->manage_room = $this->transaction[$key]['room_id'];

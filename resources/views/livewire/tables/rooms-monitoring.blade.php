@@ -20,9 +20,9 @@
                     @endif
                 </x-app.table-data>
                 <x-app.table-data>
-                    <div class="flex justify-end">
+                    {{-- <div class="flex justify-end">
                         <x-app.btn-default label="Option" />
-                    </div>
+                    </div> --}}
                 </x-app.table-data>
             </x-app.table-row>
         @empty

@@ -16,6 +16,7 @@ class RoomList extends Component
         'floor'=>'all',
         'room_status'=>'all',
     ];
+    public $search='';
     public function render()
     {
         return view('livewire.re.admin.room-list',[
@@ -25,6 +26,9 @@ class RoomList extends Component
                     })
                     ->when($this->filter['room_status']!='all',function($query){
                         return $query->where('room_status_id',$this->filter['room_status']);
+                    })
+                    ->when($this->search!='',function($query){
+                        return $query->where('number','like','%'.$this->search.'%');
                     })
                     ->with(['floor','room_status','type'])
                     ->paginate(10)

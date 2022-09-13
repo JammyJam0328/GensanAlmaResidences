@@ -11,6 +11,7 @@
                             <div class="flex justify-between px-2 py-3 bg-white border-b border-gray-200 sm:px-6">
                                 <div class="flex space-x-2">
                                     <x-input placeholder="Search"
+                                        wire:model.debounce.500ms="search"
                                         icon="search" />
                                 </div>
                                 <div>
@@ -95,9 +96,9 @@
                                             </td>
                                             <td
                                                 class="relative py-3 pl-3 pr-4 text-sm font-medium text-right whitespace-nowrap sm:pr-6">
-                                                <x-button wire:key="{{ $room->id }}"
+                                                {{-- <x-button wire:key="{{ $room->id }}"
                                                     x-on:click="alert('This feature is not yet available')"
-                                                    sm>Option</x-button>
+                                                    sm>Option</x-button> --}}
                                             </td>
                                         </tr>
                                     @empty

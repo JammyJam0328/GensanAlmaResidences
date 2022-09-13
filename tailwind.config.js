@@ -22,6 +22,7 @@ module.exports = {
             },
             fontFamily: {
                 inter: ['Inter', ...themeDefaults.fontFamily.sans],
+                rubik: ['Rubik', ...themeDefaults.fontFamily.sans],
             },
         },
     },

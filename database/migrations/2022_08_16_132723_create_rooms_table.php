@@ -21,6 +21,7 @@ return new class extends Migration
             $table->unsignedBigInteger('room_status_id');
             $table->dateTime('time_to_clean')->nullable();
             $table->unsignedBigInteger('type_id');
+            $table->dateTime('time_to_terminate_in_queue')->nullable();
             $table->timestamps();
         });
     }

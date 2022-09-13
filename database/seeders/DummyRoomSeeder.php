@@ -14,6 +14,7 @@ class DummyRoomSeeder extends Seeder
      */
     public function run()
     {
+        $room_number = 1;
         for ($i = 1; $i <= 10; $i++) {
             $floor =Floor::create([
                 'number' => $i,
@@ -23,7 +24,7 @@ class DummyRoomSeeder extends Seeder
                 $types = ['1','2','3','4'];
                 $type = $types[array_rand($types)];
                 $room = Room::create([
-                    'number' => $j,
+                    'number' => $room_number++,
                     'floor_id' => $floor->id,
                     'type_id' => $type,
                     'room_status_id' => 1,

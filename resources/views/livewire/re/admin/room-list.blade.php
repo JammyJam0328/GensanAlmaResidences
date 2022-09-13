@@ -9,6 +9,9 @@
                     <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                         <div class="flex justify-between px-2 py-3 bg-white border-b border-gray-200 sm:px-6">
                             <div class="flex space-x-2">
+                                <x-input placeholder="Search"
+                                    wire:model.debounce.500ms="search"
+                                    icon="search" />
                                 <x-native-select wire:model.debounce="filter.floor">
                                     <option value="all">All</option>
                                     @foreach ($floors as $id => $number)

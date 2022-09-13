@@ -9,10 +9,11 @@ use Livewire\Component;
 use App\Models\Designation;
 use Filament\Notifications\Notification;
 use Filament\Forms\Components\{TextInput, Grid, Select};
+use WireUi\Traits\Actions;
 
 class ManageDesignation extends Component implements Forms\Contracts\HasForms
 {
-    use Forms\Concerns\InteractsWithForms;
+    use Forms\Concerns\InteractsWithForms, Actions;
     public $isOpen = false;
     protected $listeners = ['manageFloorCleaners'];
     public $floor_id;
@@ -21,6 +22,7 @@ class ManageDesignation extends Component implements Forms\Contracts\HasForms
     {
         $this->floor_id = $id;
         $this->isOpen = true;
+        $this->user_id = '';
     }
     protected function getFormSchema(): array
     {
@@ -42,10 +44,10 @@ class ManageDesignation extends Component implements Forms\Contracts\HasForms
             ->where('current', 1)
             ->exists();
         if ($alreadyAssigned) {
-            Notification::make()
-                ->danger()
-                ->body('User already assigned to this floor')
-                ->send();
+            $this->notification()->error(
+                $title = "Failed",
+                $description = "User already assigned to this floor"
+            );
             return;
         }
         Designation::where('room_boy_id', $room_boy->id)
@@ -56,10 +58,11 @@ class ManageDesignation extends Component implements Forms\Contracts\HasForms
             'room_boy_id' => $room_boy->id,
             'floor_id' => $this->floor_id,
         ]);
-        Notification::make()
-            ->success()
-            ->body('User has been assigned successfully')
-            ->send();
+        $this->notification()->success(
+            $title = "Success",
+            $description = "User has been assigned successfully"
+        );
+        $this->reset('user_id');
     }
     public function render()
     {

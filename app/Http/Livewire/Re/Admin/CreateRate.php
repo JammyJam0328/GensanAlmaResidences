@@ -41,6 +41,7 @@ class CreateRate extends Component implements Forms\Contracts\HasForms
                         ->required()
                         ->rules('numeric')
                         ->type('number')
+                        ->minValue(1)
                         ->placeholder('ex. 100'),
                 ])
         ];

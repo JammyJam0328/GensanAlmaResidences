@@ -8,10 +8,14 @@ use Livewire\WithPagination;
 class RoomMonitoring extends Component
 {
     use WithPagination;
+    public $search='';
     public function render()
     {
         return view('livewire.re.frontdesk.room-monitoring',[
             'rooms'=>Room::query()
+                    ->when($this->search!='',function($query){
+                        return $query->where('number','like','%'.$this->search.'%');
+                    })
                     ->with([
                         'floor',
                         'room_status',

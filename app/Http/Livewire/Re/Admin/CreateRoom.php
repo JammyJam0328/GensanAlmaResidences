@@ -31,7 +31,8 @@ class CreateRoom extends Component implements Forms\Contracts\HasForms
                         ->rules('numeric')
                         ->unique('rooms', 'number')
                         ->type('number')
-                        ->placeholder('ex. 1'),
+                        ->placeholder('ex. 1')
+                        ->minValue(1),
                     Select::make('floor_id')
                         ->label('Select Floor')
                         ->validationAttribute('Select Floor')

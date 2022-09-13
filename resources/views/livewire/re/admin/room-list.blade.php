@@ -52,13 +52,7 @@
                                             {{ $room->room_status->name }}
                                         </td>
                                         <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
-                                            <div>
-                                                @if (count($room->types))
-                                                    {{ implode('/', $room->types->pluck('name')->toArray()) }}
-                                                @else
-                                                    No Types
-                                                @endif
-                                            </div>
+                                            {{ $room->type->name }}
                                         </td>
                                         <td
                                             class="relative py-4 pl-3 pr-4 text-sm font-medium text-right whitespace-nowrap sm:pr-6">

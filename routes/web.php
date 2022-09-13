@@ -78,3 +78,8 @@ Route::middleware([
 Route::fallback(function () {
     return view('404');
 });
+
+
+Route::get('/app/kiosk',function(){
+    return view('re-design.jam-kiosk.index');
+})->middleware('auth');

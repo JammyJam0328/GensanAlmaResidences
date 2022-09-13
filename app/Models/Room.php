@@ -17,9 +17,9 @@ class Room extends Model
     {
         return $this->belongsTo(RoomStatus::class);
     }
-    public function types()
+    public function type()
     {
-        return $this->belongsToMany(Type::class, 'room_types');
+        return $this->belongsTo(Type::class);
     }
 
     public function check_in_details()

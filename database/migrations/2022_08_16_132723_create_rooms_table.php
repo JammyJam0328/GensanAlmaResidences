@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->unsignedBigInteger('room_status_id');
             $table->dateTime('time_to_clean')->nullable();
+            $table->unsignedBigInteger('type_id');
             $table->timestamps();
         });
     }

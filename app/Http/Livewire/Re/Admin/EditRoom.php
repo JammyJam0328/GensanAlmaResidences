@@ -13,7 +13,7 @@ class EditRoom extends Component implements Forms\Contracts\HasForms
     use Forms\Concerns\InteractsWithForms, Actions;
     public $number, $description, $floor_id, $room_status_id;
     public $floors = [], $roomStatuses = [], $types = [];
-    public $selected_types = [];
+    public $type_id;
     protected $listeners = ['editRoom'];
     public $room;
     public $modalOpen = false;
@@ -24,7 +24,7 @@ class EditRoom extends Component implements Forms\Contracts\HasForms
         $this->description = $this->room->description;
         $this->floor_id = $this->room->floor_id;
         $this->room_status_id = $this->room->room_status_id;
-        $this->selected_types = $this->room->types->pluck('id')->toArray();
+        $this->type_id = $this->room->type_id;
         $this->modalOpen = true;
     }
     protected function getFormSchema(): array
@@ -57,12 +57,11 @@ class EditRoom extends Component implements Forms\Contracts\HasForms
                 ->validationAttribute('Description')
                 ->nullable()
                 ->rules('string'),
-            CheckboxList::make('selected_types')
-                ->label('Select all applicable types for this room')
-                ->required()
-                ->validationAttribute('Room Types')
-                ->options($this->types)
-                ->columns(2),
+            Select::make('type_id')
+                        ->label('Type')
+                        ->required()
+                        ->validationAttribute('Type')
+                       ->options($this->types)
         ];
     }
 
@@ -74,8 +73,8 @@ class EditRoom extends Component implements Forms\Contracts\HasForms
             'description' => $this->description,
             'floor_id' => $this->floor_id,
             'room_status_id' => $this->room_status_id,
+            'type_id' => $this->type_id,
         ]);
-        $this->room->types()->sync($this->selected_types);
         $this->reset('number', 'description', 'floor_id', 'room_status_id');
         $this->notification()->success(
             $title='Room Updated',

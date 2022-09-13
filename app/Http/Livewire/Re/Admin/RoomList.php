@@ -26,7 +26,7 @@ class RoomList extends Component
                     ->when($this->filter['room_status']!='all',function($query){
                         return $query->where('room_status_id',$this->filter['room_status']);
                     })
-                    ->with(['floor','room_status','types'])
+                    ->with(['floor','room_status','type'])
                     ->paginate(10)
         ]);
     }

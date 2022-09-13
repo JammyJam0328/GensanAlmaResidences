@@ -120,7 +120,7 @@
                             <dd class="mt-1 text-sm text-gray-900 sm:col-span-3 sm:mt-0">
                                 <ul role="list"
                                     class="border border-gray-200 divide-y divide-gray-200 rounded-md">
-                                    @foreach ($damages as $damage)
+                                    @forelse ($damages as $damage)
                                         <li class="flex items-center justify-between py-3 pl-3 pr-4 text-sm">
                                             <div class="flex items-center flex-1 w-0">
                                                 <span class="flex-1 w-0 ml-2 truncate">
@@ -158,7 +158,15 @@
                                                 @endif
                                             </div>
                                         </li>
-                                    @endforeach
+                                    @empty
+                                        <li class="flex items-center justify-between py-3 pl-3 pr-4 text-sm">
+                                            <div class="flex items-center flex-1 w-0">
+                                                <span class="flex-1 w-0 ml-2 truncate">
+                                                    No damage charges
+                                                </span>
+                                            </div>
+                                        </li>
+                                    @endforelse
                                 </ul>
                             </dd>
                         </div>

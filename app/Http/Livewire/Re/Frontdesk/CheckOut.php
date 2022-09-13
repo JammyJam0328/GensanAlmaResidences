@@ -161,7 +161,7 @@ class CheckOut extends Component
     public function totalyCheckOutConfirm()
     {
         $balance =  $this->guest->transactions->where('paid_at', null)->sum('payable_amount') + $this->guest->damages->where('paid_at', null)->sum('payable_amount');
-        if ($balance==0) {
+        if ($balance===0) {
             $this->guest->update([
                 'totaly_checked_out' => 1,
             ]);

@@ -12,7 +12,7 @@ class CreateRoom extends Component implements Forms\Contracts\HasForms
     use Forms\Concerns\InteractsWithForms, Actions;
     public $number, $description, $floor_id, $room_status_id;
     public $floors = [], $roomStatuses = [],$types=[];
-    public $selected_types=[];
+    public $type_id;
     public $modalOpen=false;
     protected $listeners = ['createRoom'];
     public function createRoom()
@@ -52,12 +52,11 @@ class CreateRoom extends Component implements Forms\Contracts\HasForms
                 ->validationAttribute('Description')
                 ->nullable()
                 ->rules('string'),
-            CheckboxList::make('selected_types')
-                ->label('Select all applicable types for this room')
-                ->required()
-                ->validationAttribute('Room Types')
-                ->options($this->types)
-                ->columns(2),
+            Select::make('type_id')
+                        ->label('Type')
+                        ->required()
+                        ->validationAttribute('Type')
+                       ->options($this->types)
         ];
     }
     public function save()
@@ -68,14 +67,9 @@ class CreateRoom extends Component implements Forms\Contracts\HasForms
             'description' => $this->description,
             'floor_id' => $this->floor_id,
             'room_status_id' => $this->room_status_id,
+            'type_id' => $this->type_id,
         ]);
-        foreach ($this->selected_types as $type) {
-            RoomType::create([
-                'room_id' => $room->id,
-                'type_id' => $type,
-            ]);
-        }
-        $this->reset('number', 'description', 'floor_id', 'room_status_id', 'selected_types');
+        $this->reset('number', 'description', 'floor_id', 'room_status_id', 'type_id');
         $this->notification()->success(
             $title = 'Room Created',
             $description = 'Room has been created successfully.'

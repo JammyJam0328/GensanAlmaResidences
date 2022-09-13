@@ -3,11 +3,6 @@
 @section('content')
     <div>
         <div>
-            <div class="flex space-x-3 mb-3 justify-end">
-                <x-button label="Guest"
-                    icon="search"
-                    white />
-            </div>
             <div>
                 <dl
                     class="grid grid-cols-1 divide-y divide-gray-200 overflow-hidden rounded-lg bg-white shadow md:grid-cols-3 md:divide-y-0 md:divide-x">

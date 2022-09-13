@@ -50,6 +50,7 @@ class CheckInGuest extends Component
     }
     public function checkIn()
     {
+        $this->guest->transactions()->update(['paid_at' => Carbon::now()]);
         foreach ($this->guest->transactions->where('transaction_type_id',1) as  $check_in_transaction) {
             $check_in_detail = CheckInDetail::where('transaction_id', $check_in_transaction->id)->first();
             $check_in_detail->update([

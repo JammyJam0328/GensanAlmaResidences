@@ -28,13 +28,14 @@ class Checkin extends Component
     public $customer_name;
     public $customer_number;
     public $qr_code;
+    public $manageRoomPanel = false;
 
     public function render()
     {
         return view('livewire.kiosk.checkin', [
             'rooms' => Room::where('room_status_id', 1)->where('type_id', $this->type_key)->with('floor')->get(),
             'roomtypes' => Type::get(),
-            // 'rates' => Rate::where('type_id', 'like', '%'.$this->room_key.'%')->get(),
+            'rates' => Rate::where('type_id', 'like', '%'.$this->type_key.'%')->get(),
         ]);
     }
 
@@ -46,39 +47,18 @@ class Checkin extends Component
         ]);
     }
 
-    // public function selectRoom($room_id)
-    // {
-    //     if ($this->transaction == null) {
-
-    //         array_push($this->transaction, $this->get_room);
-    //         $this->transaction[$this->room_array]['room_id'] = $room_id;
-    //         $this->room_array++;
-    //     } else {
-
-    //         $room_exists = collect($this->transaction)->contains(function ($value, $key) use ($room_id) {
-    //             return $value['room_id'] == $room_id;
-    //         });
-
-    //         if ($room_exists) {
-    //             // $this->notification([
-    //             //     'title'       => 'Room',
-    //             //     'description' => 'Room already exists',
-    //             //     'icon'        => 'info'
-
-    //             // ]);
-    //             dd('Room already exists');
-    //         } else {
-    //             array_push($this->transaction, $this->get_room);
-    //             $this->transaction[$this->room_array]['room_id'] = $room_id;
-    //             $this->room_array++;
-    //         }
-    //     }
-    // }
+    public function selectRoom($room_id)
+    {
+        $this->get_room['room_id'] = $room_id;
+        // dd($this->get_room);
+        $this->manageRoomPanel = true;
+    }
 
 
         public function selectRoomType($type_id){
-            array_push($this->transaction, $this->get_room);
-            $this->transaction[$this->room_array]['type_id'] = $type_id;
+            // array_push($this->transaction, $this->get_room);
+            // $this->transaction[$this->room_array]['type_id'] = $type_id;
+            $this->get_room['type_id'] = $type_id;
             $this->room_array++;
             $this->type_key = $type_id;
         }
@@ -102,7 +82,7 @@ class Checkin extends Component
     }
 
     public function selectRate($rate_id){
-        $this->transaction[$this->room_key]['rate_id'] = $rate_id;
+       $this->get_room['rate_id'] = $rate_id;
     }
 
     public function confirmCheckin()
@@ -125,10 +105,8 @@ class Checkin extends Component
            'contact_number' => $this->customer_number, 
         ]);
 
-        foreach ($this->transaction as $key => $item) {
-
-            $room = Room::where('id', $item['room_id'])->first();
-            $rate = Rate::where('id', $item['rate_id'])->first();
+        $room = Room::where('id', $this->get_room['room_id'])->first();
+            $rate = Rate::where('id', $this->get_room['rate_id'])->first();
 
           $checkinroom = Transaction::create([
             'guest_id' => $guest->id,
@@ -143,22 +121,29 @@ class Checkin extends Component
 
           $details = CheckInDetail::create([
             'transaction_id' => $checkinroom->id,
-            'room_id' => $item['room_id'],
-            'rate_id' => $item['rate_id'],
+            'room_id' => $this->get_room['room_id'],
+            'rate_id' => $this->get_room['rate_id'],
             'static_amount' => $rate->amount,
             'static_hours_stayed' => $rate->staying_hour->number,
           ]);
           
           $room->update([
             'room_status_id' => 6,
+            'time_to_terminate_in_queue' => Carbon::now()->addMinutes(10),
           ]);
 
           $this->qr_code = $transaction_code;
-        //   dd($this->qr_code);
-        $this->step = 4;
-          
-        }
+            $this->step = 4;
+
+       
     }
 
+    public function confirmRate(){
+            $this->validate([
+                'get_room.rate_id' => 'required',
+            ]);
+            $this->manageRoomPanel = false;
+            $this->step = 3;
+    }
     
 }

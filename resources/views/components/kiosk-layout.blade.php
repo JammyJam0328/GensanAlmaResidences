@@ -17,7 +17,7 @@
         <script src="https://unpkg.com/@lottiefiles/lottie-interactivity@latest/dist/lottie-interactivity.min.js"></script>
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-
+    @wireUiScripts
     <!-- Styles -->
     @livewireStyles
 </head>
@@ -44,7 +44,9 @@
      </div>
     {{$slot}}
 </div>
-    
+<x-notifications z-index="z-50" />
+<x-dialog z-index="z-50"
+    align="center" />
     @livewireScripts
     @stack('scripts')
 </body>

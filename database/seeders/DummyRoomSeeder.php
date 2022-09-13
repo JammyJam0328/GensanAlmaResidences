@@ -13,6 +13,7 @@ class DummyRoomSeeder extends Seeder
      * @return void
      */
     public function run()
+
     {
         $room_number = 1;
         for ($i = 1; $i <= 10; $i++) {

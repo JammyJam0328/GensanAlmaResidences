@@ -22,7 +22,7 @@
                                     <tr>
                                         @foreach ($headers as $header)
                                             <th scope="col"
-                                                class="py-3  pr-3 text-xs font-medium tracking-wide text-left text-gray-500 uppercase sm:pl-4">
+                                                class="py-3 pr-3 text-xs font-medium tracking-wide text-left text-gray-500 uppercase sm:pl-4">
                                                 {{ $header }}</th>
                                         @endforeach
                                     </tr>
@@ -47,7 +47,7 @@
                                                     @endphp
                                                     @if ($expires->isPast())
                                                         <span class="text-red-500">
-                                                            {{ $expires->diffForHumans() }}
+                                                            Time Out :{{ $expires->diffForHumans() }}
                                                         </span>
                                                     @else
                                                         <x-countdown :expires="$expires" />

@@ -18,6 +18,17 @@ class DummyRoomSeeder extends Seeder
             $floor =Floor::create([
                 'number' => $i,
             ]);
+            for ($j = 1; $j <= 10; $j++) {
+                // random room type
+                $types = ['1','2','3','4'];
+                $type = $types[array_rand($types)];
+                $room = Room::create([
+                    'number' => $j,
+                    'floor_id' => $floor->id,
+                    'type_id' => $type,
+                    'room_status_id' => 1,
+                ]);
+            }
         }
     }
 }

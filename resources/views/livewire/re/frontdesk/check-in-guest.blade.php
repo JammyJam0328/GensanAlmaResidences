@@ -30,18 +30,18 @@
                             <dt class="text-sm font-bold text-gray-900">Transaction | Bills</dt>
                             <dd class="mt-1 text-sm text-gray-900 sm:col-span-3 sm:mt-0">
                                 <ul role="list"
-                                    class="divide-y divide-gray-200 rounded-md border border-gray-200">
+                                    class="border border-gray-200 divide-y divide-gray-200 rounded-md">
                                     @foreach ($transactions as $transaction)
                                         <li class="flex items-center justify-between py-3 pl-3 pr-4 text-sm">
-                                            <div class="flex w-0 flex-1 items-center">
-                                                <span class="ml-2 w-0 flex-1 truncate">
+                                            <div class="flex items-center flex-1 w-0">
+                                                <span class="flex-1 w-0 ml-2 truncate">
                                                     {{ $transaction->transaction_type->name }} |
                                                     ₱{{ $transaction->payable_amount }} @if ($transaction->transaction_type_id == 1)
                                                         | ROOM # {{ $transaction->check_in_detail->room->number }}
                                                     @endif
                                                 </span>
                                             </div>
-                                            <div class="ml-4 flex-shrink-0">
+                                            <div class="flex-shrink-0 ml-4">
 
                                             </div>
                                         </li>
@@ -50,6 +50,11 @@
                             </dd>
                         </div>
                     </dl>
+                    <div class="mt-5">
+                        <h1 class="font-semibold text-gray-800">
+                            Total Amount: ₱{{ $guest->transactions->sum('payable_amount') }}
+                        </h1>
+                    </div>
                 </div>
             @endif
         </div>

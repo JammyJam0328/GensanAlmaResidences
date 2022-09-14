@@ -17,7 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('/kiosk')->middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
-    'verified'
+    'verified',
+    'kiosk'
 ])->group(function () {
     Route::get('/',function(){
         return view('kiosk-pages.select-transaction');
@@ -28,7 +29,6 @@ Route::prefix('/kiosk')->middleware([
     Route::get('/check-out',function(){
         return view('kiosk-pages.checkout');
     })->name('kiosk.checkout');
-
     Route::get('/reports',function(){
         return view('kiosk.reports');
     })->name('kiosk.reports');
@@ -38,7 +38,8 @@ Route::prefix('/kiosk')->middleware([
 Route::prefix('/kitchen')->middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
-    'verified'
+    'verified',
+    'kitchen'
 ])->group(function () {
     Route::get('/',function(){
         return view('kitchen-pages.dashboard');

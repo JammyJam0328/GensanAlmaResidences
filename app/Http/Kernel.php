@@ -67,5 +67,7 @@ class Kernel extends HttpKernel
         'frontdesk' => \App\Http\Middleware\Frontdesk::class,
         'housekeeping' => \App\Http\Middleware\Housekeeping::class,
         'roomboy' => \App\Http\Middleware\Roomboy::class,
+        'kiosk' => \App\Http\Middleware\Kiosk::class,
+        'kitchen' => \App\Http\Middleware\Kitchen::class,
     ];
 }

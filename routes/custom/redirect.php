@@ -8,22 +8,22 @@ Route::middleware([
     Route::get('/dashboard', function () {
         $role = auth()->user()->role_id;
         switch ($role) {
-          case  Role::admin():
+          case  "1":
             return redirect()->route('re-admin.dashboard');
             break;
-          case Role::frontdesk():
+          case "2":
             return redirect()->route('re-frontdesk.dashboard');
             break;
-          case Role::kitchen():
+          case "4":
             return redirect()->route('kitchen.dashboard');
             break;
-          case Role::bellboy():
+          case "5":
            return redirect()->route('roomboy.home');
             break;
-          case Role::housekeeping():
+          case "6":
             return redirect()->route('house-keeping.dashboard');
             break;
-          case Role::kiosk():
+          case "3":
             return redirect()->route('kiosk.transaction');
             break;
           default:

@@ -102,10 +102,10 @@ class ToCleanRooms extends Component
     public function render()
     {
         return view('livewire.tables.to-clean-rooms', [
-            'rooms' =>  Room::query()
+            'rooms' =>  $this->designation ? Room::query()
                 ->where('floor_id', $this->designation->floor_id)
                 ->whereIn('room_status_id', [7, 8])
-                ->get()
+                ->get() : [],
         ]);
     }
 }

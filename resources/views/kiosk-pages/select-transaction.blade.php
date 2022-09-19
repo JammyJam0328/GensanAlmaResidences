@@ -5,8 +5,8 @@
         <h1 class="text-7xl uppercase font-black">ALMA RESIDENCES |</h1>
         <h1 class="text">General Santos City</h1>
     </div>
-    <div class="flex mx-10 mt-10 mb-2">
-        <h1 class="text-gray-300  font-medium font-rubik">Select Transaction:</h1>
+    <div class="flex mx-10 mt-20 mb-2">
+        <h1 class="text-gray-300  font-medium font-rubik">Select Transactions:</h1>
     </div>
     <div class="mx-10 font-rubik flex space-x-5 shadow-">
         <button onclick="document.location='{{route('kiosk.checkin')}}'"

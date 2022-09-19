@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>ALMA RESIDENCES | KITCHEN</title>
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
@@ -38,7 +38,7 @@
                                 d="M21 20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.49a1 1 0 0 1 .386-.79l8-6.222a1 1 0 0 1 1.228 0l8 6.222a1 1 0 0 1 .386.79V20zm-10-7v6h2v-6h-2z" />
                         </svg>
                     </div>
-                    <div class="{{Request::routeIs('kitchen.dashboard') ? 'bg-white' : ''}} w-1"></div>
+                    <div class="{{Request::routeIs('kitchen.dashboard') ? 'bg-green-500' : ''}} w-1"></div>
                 </a>
                 
                 <a href="{{route('kitchen.menu')}}" class="flex h-12">

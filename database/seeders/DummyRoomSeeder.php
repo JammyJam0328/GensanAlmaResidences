@@ -16,7 +16,7 @@ class DummyRoomSeeder extends Seeder
 
     {
         $room_number = 1;
-        for ($i = 1; $i <= 10; $i++) {
+        for ($i = 1; $i <= 5; $i++) {
             $floor =Floor::create([
                 'number' => $i,
             ]);

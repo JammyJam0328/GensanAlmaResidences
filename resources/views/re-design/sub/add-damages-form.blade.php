@@ -23,9 +23,11 @@
                     <option value="">Select Room</option>
                     @if ($loadTransactions == true)
                         @foreach ($transactions->where('transaction_type_id', 1) as $transaction)
-                            <option value="{{ $transaction->check_in_detail->room->id }}">
-                                Room # {{ $transaction->check_in_detail->room->number }}
-                            </option>
+                            @if ($transaction->check_in_detail->check_out_at == null)
+                                <option value="{{ $transaction->check_in_detail->room->id }}">
+                                    Room # {{ $transaction->check_in_detail->room->number }}
+                                </option>
+                            @endif
                         @endforeach
                     @endif
                 </x-native-select>
